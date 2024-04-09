@@ -1,24 +1,18 @@
-import { Dispatch, SetStateAction, createContext, useCallback, useContext, useState } from "react";
-import { Results } from "../types/results";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useGetAllGames } from "../data/get-games";
 import { request } from "../constants/request";
-
-interface ContextType {
-  data: Results[] | undefined;
-  getGames: (path: keyof typeof request) => void;
-  isFetching: boolean;
-  page: number;
-  setPage: Dispatch<SetStateAction<number>>;
-  setGenre: Dispatch<SetStateAction<string[]>>;
-}
+import { ContextType } from "../types/context";
 
 const MyContext = createContext<ContextType>({
   data: [],
-  getGames: (path: keyof typeof request) => {},
   isFetching: false || true,
   page: 1,
   setPage: () => {},
-  setGenre: (value: SetStateAction<string[]>) => {}
+  filterByGenre: [],
+  filterByPlatform: [],
+  setFilterByOrder: () => {},
+  setFilterByGenre: () => {},
+  setFilterByPlatform: () => {},
 });
 
 const GamesProvider = ({
@@ -27,22 +21,41 @@ const GamesProvider = ({
   children: React.ReactNode;
 }>) => {
   
+  const [filterByOrder, setFilterByOrder] = useState(
+    request["best-games"].fetchUrl
+  );
+  const [filterByGenre, setFilterByGenre] = useState<string[]>([]);
+  const [filterByPlatform, setFilterByPlatform] = useState<number[]>([]);
+
   const [filterQuery, setFilterQuery] = useState(
     request["best-games"].fetchUrl
   );
-  const [genre, setGenre] = useState<string[]>([])
   const { data, isFetching, page, setPage } = useGetAllGames(filterQuery);
 
-  const getGames = useCallback(
-    (path: keyof typeof request) => {
-      setFilterQuery(request[path].fetchUrl);
-    },
-    [filterQuery]
-  );
+  useEffect(() => {
+    let newFilterQuery = `${filterByOrder}`;
+    if (filterByGenre.length > 0) {
+      newFilterQuery += `&genres=${filterByGenre.join(",")}`;
+    }
+    if (filterByPlatform.length > 0) {
+      newFilterQuery += `&platforms=${filterByPlatform.join(",")}`;
+    }
+    setFilterQuery(newFilterQuery);
+  }, [filterByOrder, filterByGenre, filterByPlatform]);
 
   return (
     <MyContext.Provider
-      value={{ data, getGames, isFetching, page, setPage, setGenre }}
+      value={{
+        data,
+        isFetching,
+        page,
+        setPage,
+        setFilterByOrder,
+        setFilterByGenre,
+        filterByGenre,
+        setFilterByPlatform,
+        filterByPlatform,
+      }}
     >
       {children}
     </MyContext.Provider>

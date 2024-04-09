@@ -6,12 +6,12 @@ import { request } from '../constants/request';
 
 function OrderNavBar() {
 
-  const { getGames, setPage, page } = useGameFiltered()
+  const { setPage, page, setFilterByOrder } = useGameFiltered()
   const [order, setOrder] = useState<keyof typeof request>("best-games");
 
   const handleOrder = () => {
     if (order !== undefined) {
-      getGames(order);
+      setFilterByOrder(request[order].fetchUrl);
       if(page === 1) {
         return
       } else {
