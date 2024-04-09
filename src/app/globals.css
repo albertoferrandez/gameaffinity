@@ -3,31 +3,35 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background: linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 64% );
+  --text-color: #0b1a24;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background: linear-gradient(to bottom, #221144, #6633BB);
+    --text-color: #f8fafc
   }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: var(--text-color);
+  background-image: var(--background);
+  min-height: 100dvh;
+  max-width: 100dvw;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+img {
+  mask-image: linear-gradient(
+    black 70%,
+    transparent
+  );
+}
+
+.button-filters {
+  @apply dark:bg-purple-emperor dark:text-sulphur bg-pecan text-purple-emperor text-xs
+}
+
+.button-filters.active {
+  @apply dark:bg-sulphur dark:text-purple-emperor bg-purple-emperor text-pecan text-xs font-bold
 }
