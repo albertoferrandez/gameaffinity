@@ -2,7 +2,6 @@
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import { fetchAllGames, fetchGamesBySearch } from './fetch-data';
 import { useState } from "react";
-import { genres } from '../constants/genres';
 
 export function useGetGamesBySearch(search :string) {
 

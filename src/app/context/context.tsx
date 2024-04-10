@@ -4,7 +4,7 @@ import { request } from "../constants/request";
 import { ContextType } from "../types/context";
 
 const MyContext = createContext<ContextType>({
-  data: [],
+  data: undefined,
   isFetching: false || true,
   page: 1,
   setPage: () => {},
@@ -41,7 +41,8 @@ const GamesProvider = ({
       newFilterQuery += `&platforms=${filterByPlatform.join(",")}`;
     }
     setFilterQuery(newFilterQuery);
-  }, [filterByOrder, filterByGenre, filterByPlatform]);
+    setPage(1)
+  }, [filterByOrder, filterByGenre, filterByPlatform, setPage]);
 
   return (
     <MyContext.Provider

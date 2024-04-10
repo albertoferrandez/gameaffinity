@@ -1,8 +1,8 @@
 import { Dispatch, SetStateAction } from "react";
-import { Response } from "./results";
+import { IGames } from "./results";
 
 export interface ContextType {
-  data: Response[] | undefined;
+  data: IGames | undefined;
   isFetching: boolean;
   page: number;
   setPage: Dispatch<SetStateAction<number>>;

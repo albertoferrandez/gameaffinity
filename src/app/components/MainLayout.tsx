@@ -14,7 +14,7 @@ function MainLayout({
       id="all-games"
       className="flex min-h-[90dvh] justify-center gap-4 mt-12"
     >
-      <div className="min-w-[1024px] flex">
+      <div className="flex">
         <FiltersSidebar />
 
         <main className="p-4">

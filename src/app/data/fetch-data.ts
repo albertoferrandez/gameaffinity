@@ -1,4 +1,4 @@
-import { Games, Result } from "../types/results";
+import { IGames, Result } from "../types/results";
 
 const URL_API = "https://api.rawg.io/api/games?key=";
 const API_KEY = "2a3d2cb97f9e4d59a7512ddc6d015c7b";
@@ -24,7 +24,7 @@ export const fetchGamesBySearch = async (
 export const fetchAllGames = async (
   filterQuery: string,
   page: number
-): Promise<Games[]> => {
+): Promise<IGames> => {
   let url = filterQuery + `&page=${page}`;
 
   const response = await fetch(url, {

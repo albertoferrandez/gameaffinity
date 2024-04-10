@@ -12,12 +12,8 @@ interface Props {
 
 function Games({ data , page, setPage }: Props) {
 
-  console.log(Math.ceil(data!.count / 15));
-
   return (
     <section className="mt-6">
-      <h3></h3>
-
       <ul className="grid grid-cols-3 gap-3 place-content-center p-4">
         {data?.results.map((game: Result) => (
           <Link href={`game/${game.slug}`} key={game.id}>
@@ -31,7 +27,8 @@ function Games({ data , page, setPage }: Props) {
               />
               <div
                 className="flex justify-center w-full bg-slate-100 dark:bg-black 
-                gap-2 items-center dark:text-sulphur text-shadow-planet text-xs text-pretty p-2"
+                gap-2 items-center dark:text-sulphur text-shadow-planet 
+                text-xs text-pretty p-2"
               >
                 <h4>{game.name}</h4>
               </div>
