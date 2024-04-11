@@ -11,16 +11,18 @@ const config: Config = {
   ],
   theme: {
     colors: {
-      transparent: 'transparent',
-      current: 'currentColor',
+      transparent: "transparent",
+      current: "currentColor",
       "shadow-planet": "#221144",
       "purple-emperor": "#6633BB",
       "galactic": "#442288",
       "sulphur": "#D5D717",
-      "pecan": "#F1EAE2",
-      "south": "#EADFD2"
+      "spiralgreen": "d4ff8f",
+      "lightgreen": "#f0f2f1",
+      "spiraldark": "#9b7cff",
+      "greengray": "#d0d8d4"
     },
   },
-  plugins: [nextui()],
+  plugins: [nextui({ addCommonColors: true })],
 };
 export default config;

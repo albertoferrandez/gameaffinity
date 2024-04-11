@@ -1,6 +1,6 @@
 "use client"
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import { fetchAllGames, fetchGamesBySearch } from './fetch-data';
+import { fetchAllGames, fetchGamesBySearch, fetchGamesBySlug } from './fetch-data';
 import { useState } from "react";
 
 export function useGetGamesBySearch(search :string) {
@@ -35,6 +35,21 @@ export function useGetAllGames(filterQuery: string) {
     isFetching,
     page,
     setPage
+  };
+}
+
+export function useGetGameBySlug(slug: string) {
+  const { data, refetch, isFetching } = useQuery({
+    queryKey: ["games", slug],
+    queryFn: () => fetchGamesBySlug(slug),
+    refetchOnWindowFocus: false,
+    enabled: !!slug,
+    placeholderData: keepPreviousData,
+  });
+
+  return {
+    data,
+    isFetching
   };
 }
 

@@ -21,7 +21,7 @@ function Header() {
     debounce((searchValue: string) => {
       setQueryGame(searchValue);
     }, 800), 
-    [] 
+    [queryGame] 
   );
 
   const handleSearchInputChange = (

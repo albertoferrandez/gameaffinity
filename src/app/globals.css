@@ -29,9 +29,9 @@ img {
 }
 
 .button-filters {
-  @apply dark:bg-purple-emperor dark:text-sulphur bg-pecan text-purple-emperor text-xs
+  @apply dark:bg-purple-emperor dark:text-sulphur bg-spiralgreen text-purple-emperor text-xs
 }
 
 .button-filters.active {
-  @apply dark:bg-sulphur dark:text-purple-emperor bg-purple-emperor text-pecan text-xs font-bold
+  @apply dark:bg-sulphur dark:text-purple-emperor bg-purple-emperor text-spiraldark text-xs font-bold
 }

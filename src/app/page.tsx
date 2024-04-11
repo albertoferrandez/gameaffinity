@@ -7,11 +7,6 @@ export default async function Home() {
 
   const queryClient = new QueryClient()
 
-  await queryClient.prefetchQuery({
-    queryKey: ["games"],
-    queryFn: () => fetchAllGames(''),
-  });
-
   return (
     <>
       <HydrationBoundary state={dehydrate(queryClient)}>

@@ -10,14 +10,13 @@ interface Props {
   setPage: Dispatch<SetStateAction<number>>;
 }
 
-function Games({ data , page, setPage }: Props) {
-
+function Games({ data, page, setPage }: Props) {
   return (
     <section className="mt-6">
       <ul className="grid grid-cols-3 gap-3 place-content-center p-4">
         {data?.results.map((game: Result) => (
           <Link href={`game/${game.slug}`} key={game.id}>
-            <Card className="w-[200px] h-[300px] bg-slate-100 dark:bg-dark">
+            <Card className="w-[200px] h-[300px] bg-slate-100 dark:bg-transparent">
               <Image
                 isZoomed
                 removeWrapper
@@ -26,7 +25,7 @@ function Games({ data , page, setPage }: Props) {
                 src={game.background_image || ""}
               />
               <div
-                className="flex justify-center w-full bg-slate-100 dark:bg-black 
+                className="flex justify-center w-full bg-slate-100 dark:bg-transparent 
                 gap-2 items-center dark:text-sulphur text-shadow-planet 
                 text-xs text-pretty p-2"
               >
