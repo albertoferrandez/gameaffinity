@@ -4,14 +4,13 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  Input,
   Button,
 } from "@nextui-org/react";
-import { IconSearch } from "@tabler/icons-react";
 import Link from "next/link";
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { useGetGamesBySearch } from "../data/get-games";
 import debounce from "just-debounce-it";
+import InputSearchGames from "./InputSearchGames";
 
 function Header() {
   const [queryGame, setQueryGame] = useState<string>("");
@@ -39,39 +38,20 @@ function Header() {
         base: "bg-pecan dark:bg-shadow-planet flex",
       }}
     >
-      <NavbarBrand>
-        <p className="font-bold text-2xl text-sulphur">gameaffinity</p>
-      </NavbarBrand>
+        <NavbarBrand>
+          <Link href={"/"}>
+           <p className="font-bold text-2xl text-sulphur">gameaffinity</p>
+          </Link>
+        </NavbarBrand>
+    
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem className="relative flex-grow">
-          <form id="searchgames">
-            <Input
-              name="searchgames"
-              onChange={handleSearchInputChange}
-              defaultValue=""
-              type="text"
-              placeholder="Buscar"
-              variant="flat"
-              size="md"
-              startContent={<IconSearch color="gray" />}
-              color="secondary"
-            />
-          </form>
-          {games && queryGame ? (
-            <div
-              className="w-full rounded-md absolute z-50 overflow-hidden
-             flex flex-col bg-white dark:bg-slate-900"
-            >
-              {games?.map((game) => (
-                <span key={game.id}>{game.name}</span>
-              ))}
-            </div>
-          ) : "" || error ? (
-            "No se han encontra resultados 😥"
-          ) : (
-            ""
-          )}
-        </NavbarItem>
+        <InputSearchGames
+          handleSearchInputChange={handleSearchInputChange}
+          setQueryGame={setQueryGame}
+          games={games}
+          queryGame={queryGame}
+          error={error}
+        />
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex">

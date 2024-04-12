@@ -12,11 +12,11 @@ interface Props {
 
 function Games({ data, page, setPage }: Props) {
   return (
-    <section className="mt-6">
-      <ul className="grid grid-cols-3 gap-3 place-content-center p-4">
+    <section className="md:mt-6 mt-0">
+      <ul className="grid grid-cols-2 md:grid-cols-3 gap-3 place-content-center p-4">
         {data?.results.map((game: Result) => (
           <Link href={`game/${game.slug}`} key={game.id}>
-            <Card className="w-[200px] h-[300px] bg-slate-100 dark:bg-transparent">
+            <Card className="md:w-[200px] md:h-[300px] w-[150px] h-[250px] bg-slate-100 dark:bg-transparent">
               <Image
                 isZoomed
                 removeWrapper

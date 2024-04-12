@@ -35,3 +35,43 @@ img {
 .button-filters.active {
   @apply dark:bg-sulphur dark:text-purple-emperor bg-purple-emperor text-spiraldark text-xs font-bold
 }
+
+.checkbox-filters-genre-platforms {
+ @apply relative text-[0.60rem] bg-galactic px-1 py-1 rounded-lg cursor-pointer
+}
+
+.checkbox-filters-genre-platforms:has([type="checkbox"]:checked) {
+  @apply dark:bg-sulphur dark:text-purple-emperor bg-purple-emperor text-spiraldark font-bold
+}
+
+summary {
+  list-style: none;
+}
+
+summary::after {
+  content: ">";
+  font-size: 16px;
+  font-weight: 700;
+  transition: 0.75s;
+}
+
+details[open] > summary::after {
+  transform: rotate(90deg);
+}
+
+details article {
+  opacity: 0;
+}
+
+details[open] article {
+  animation: fadeIn .75s linear forwards;
+}
+
+@keyframes fadeIn {
+ 0% {
+   opacity: 0;
+ }
+ 100% {
+   opacity: 1;
+ }
+} 

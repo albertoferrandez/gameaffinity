@@ -1,7 +1,8 @@
 "use client";
 
-import OrderNavBar from "./OrderNavBar";
 import FiltersSidebar from "./FiltersSidebar";
+import OrderFilterDesktop from "./OrderFilterDesktop";
+import OrderFilterMobile from './OrderFilterMobile';
 
 function MainLayout({
   children,
@@ -18,7 +19,7 @@ function MainLayout({
         <FiltersSidebar />
 
         <main className="p-4">
-          <OrderNavBar />
+          <OrderFilterDesktop />
           {children}
         </main>
       </div>

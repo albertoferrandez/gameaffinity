@@ -6,10 +6,10 @@ import Link from "next/link";
 import React from "react";
 
 function Page({ params }: { params: { slug: string } }) {
-  const { data } = useGetGameBySlug(params.slug);
+  const { data, isFetching } = useGetGameBySlug(params.slug);
 
   return (
-    <section className="w-screen flex justify-center mt-12">
+    <section className="flex justify-center mt-12">
       <div className="flex flex-col max-w-[1200px] mx-auto">
         <div>
           <Link
@@ -22,6 +22,8 @@ function Page({ params }: { params: { slug: string } }) {
 
           <h1 className="text-2xl font-extrabold mt-4">{data?.name}</h1>
         </div>
+
+        {isFetching && "Loading..."}
 
         <div className="grid grid-cols-2 mt-12">
           <div>
@@ -70,7 +72,7 @@ function Page({ params }: { params: { slug: string } }) {
 
             <p className="flex items-center gap-2">
               <span className="text-xs text-slate-300">Grupos:</span>
-              <span className="text-sm font-bol text-slate-100">
+              <span className="text-sm font-bol text-slate-100 flex gap-2 flex-wrap">
                 {data?.tags.map((tags) => (
                   <Chip as={"span"} color="default" size="sm" key={tags.name}>
                     {tags.name}
